@@ -4,7 +4,7 @@
 
 import os, sys, platform, copy
 
-Import('parentEnv', 'FABRIC_CAPI_DIR', 'FABRIC_SPLICE_VERSION', 'STAGE_DIR', 'FABRIC_BUILD_OS', 'FABRIC_BUILD_TYPE', 'ARNOLD_INCLUDE_DIR', 'ARNOLD_LIB_DIR','ARNOLD_VERSION', 'sharedCapiFlags', 'spliceFlags')
+Import('parentEnv', 'FABRIC_DIR', 'FABRIC_SPLICE_VERSION', 'STAGE_DIR', 'FABRIC_BUILD_OS', 'FABRIC_BUILD_TYPE', 'ARNOLD_INCLUDE_DIR', 'ARNOLD_LIB_DIR','ARNOLD_VERSION', 'sharedCapiFlags', 'spliceFlags')
 
 env = parentEnv.Clone()
 
@@ -50,9 +50,9 @@ arnoldFiles.append(installedModule[0])
 arnoldFiles.append(env.Install(STAGE_DIR, env.File('license.txt')))
 
 # also install the FabricCore dynamic library
-arnoldFiles.append(env.Install(STAGE_DIR, env.Glob(os.path.join(FABRIC_CAPI_DIR, 'lib', '*.so'))))
-arnoldFiles.append(env.Install(STAGE_DIR, env.Glob(os.path.join(FABRIC_CAPI_DIR, 'lib', '*.dylib'))))
-arnoldFiles.append(env.Install(STAGE_DIR, env.Glob(os.path.join(FABRIC_CAPI_DIR, 'lib', '*.dll'))))
+arnoldFiles.append(env.Install(STAGE_DIR, env.Glob(os.path.join(FABRIC_DIR, 'lib', '*.so'))))
+arnoldFiles.append(env.Install(STAGE_DIR, env.Glob(os.path.join(FABRIC_DIR, 'lib', '*.dylib'))))
+arnoldFiles.append(env.Install(STAGE_DIR, env.Glob(os.path.join(FABRIC_DIR, 'lib', '*.dll'))))
 
 # install PDB files on windows
 if FABRIC_BUILD_TYPE == 'Debug' and FABRIC_BUILD_OS == 'Windows':
